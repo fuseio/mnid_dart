@@ -1,0 +1,15 @@
+name: mnid_dart
+description: Multi Network Identifier - spec and reference implementation
+version: 0.1.0
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+dependencies:
+  sha3: ^0.2.0
+  base_x: ^2.0.0
+  crypto: ^3.0.1
+  hex: ^0.2.0
+
+dev_dependencies:
+  test: ^1.9.4
