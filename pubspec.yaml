@@ -1,6 +1,6 @@
 name: mnid_dart
 description: Multi Network Identifier - spec and reference implementation
-version: 0.1.1
+version: 0.1.2
 repository: https://github.com/fuseio/mnid_dart
 
 environment:
@@ -9,7 +9,6 @@ environment:
 dependencies:
   sha3: ^0.2.0
   base_x: ^2.0.0
-  crypto: ^3.0.1
   hex: ^0.2.0
   collection: ^1.15.0
 
