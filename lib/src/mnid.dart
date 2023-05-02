@@ -7,11 +7,23 @@ import 'package:collection/collection.dart';
 import 'package:hex/hex.dart';
 import 'package:sha3/sha3.dart';
 
+/// The Base58 encoding codec used for MNID encoding.
 BaseXCodec base58 =
     BaseXCodec('123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz');
+
+/// The hexadecimal encoding codec.
 BaseXCodec hex = BaseXCodec('0123456789abcdef');
 
+/// Multi Network Identifier (MNID) Dart implementation.
+///
+/// This library provides a way to encode and decode Ethereum addresses
+/// with a network identifier, useful for handling addresses from different
+/// networks (e.g., mainnet, testnets) in a unified way.
 class MNID {
+  /// Calculates the checksum of the given payload using the first 4 bytes
+  /// of its SHA3-256 hash.
+  ///
+  /// [payload] - A list of integers representing the payload to be hashed.
   static List<int> checksum(payload) {
     var k = SHA3(256, SHA3_PADDING, 256);
     k.update(payload);
@@ -19,6 +31,10 @@ class MNID {
     return hash.sublist(0, 4);
   }
 
+  /// Encodes the given Ethereum address and network identifier into an MNID.
+  ///
+  /// [network] - The network identifier as a hexadecimal string.
+  /// [address] - The Ethereum address as a hexadecimal string.
   static String encode({
     required String network,
     required String address,
@@ -40,6 +56,12 @@ class MNID {
     );
   }
 
+  /// Decodes an MNID string into its corresponding network identifier and
+  /// Ethereum address.
+  ///
+  /// [encoded] - The MNID string to be decoded.
+  /// Returns a Map with 'network' and 'address' keys.
+  /// Throws an exception if the address checksum is invalid.
   static Map decode(String encoded) {
     final Uint8List data = base58.decode(encoded);
     final netLength = data.length - 24;
@@ -60,6 +82,10 @@ class MNID {
     }
   }
 
+  /// Determines whether the given string is a valid MNID.
+  ///
+  /// [encoded] - The string to be checked.
+  /// Returns true if the input is a valid MNID, false otherwise.
   static bool isMNID(String encoded) {
     try {
       final Uint8List data = base58.decode(encoded);
