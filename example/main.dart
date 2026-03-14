@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'dart:convert';
 import 'dart:io';
 
@@ -21,6 +23,6 @@ void main() {
 
   print('encode toEqual:  ${en == '2nQtiQG6Cgm1GYTBaaKAgr76uY7iSexUkqX'}');
 
-  final decoderrrr = MNID.decode('34ukSmiK1oA1C5Du8aWpkjFGALoH7nsHeDX');
-  print('decoderrrr ${decoderrrr.toString()}');
+  final decoded = MNID.decode('34ukSmiK1oA1C5Du8aWpkjFGALoH7nsHeDX');
+  print('decoded: ${decoded.network} ${decoded.address}');
 }
